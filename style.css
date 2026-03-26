@@ -1,0 +1,422 @@
+:root {
+    --bg-dark: #0a0a0f;
+    --card-bg: rgba(20, 20, 25, 0.7);
+    --primary-color: #6366f1;
+    --primary-glow: rgba(99, 102, 241, 0.5);
+    --secondary-color: #a855f7;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --private-color: #10b981;
+    --shared-color: #f59e0b;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Dynamic Background Elements */
+.background-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #11111a 0%, #0a0a0f 100%);
+}
+
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.4;
+    animation: float 10s infinite alternate ease-in-out;
+}
+
+.orb-1 {
+    top: -10%;
+    left: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: var(--primary-color);
+}
+
+.orb-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 40vw;
+    height: 40vw;
+    background: var(--secondary-color);
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(5%, 10%) scale(1.1); }
+}
+
+header {
+    text-align: center;
+    padding: 3rem 1rem 1rem;
+}
+
+.logo h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero {
+    text-align: center;
+    padding: 2rem 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.hero .highlight {
+    color: var(--text-main);
+    text-shadow: 0 0 15px var(--primary-glow);
+}
+
+.hero p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.pricing-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 320px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px var(--primary-glow);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Glowing border effect on hover */
+.pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+}
+
+.pricing-card:hover::before {
+    transform: scaleX(1);
+}
+
+.pricing-card.popular {
+    transform: scale(1.05);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.15);
+}
+
+.pricing-card.popular:hover {
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(99, 102, 241, 0.3);
+}
+
+.popular-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.4rem 2rem;
+    transform: translate(30%, 50%) rotate(45deg);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-header {
+    margin-bottom: 2rem;
+}
+
+.card-header h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.account-type {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.account-type.private {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--private-color);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.account-type.shared-badge {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--shared-color);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.price {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+.currency {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    margin-right: 0.3rem;
+    color: var(--text-muted);
+}
+
+.amount {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.features {
+    list-style: none;
+    margin-bottom: 2.5rem;
+    flex-grow: 1;
+}
+
+.features li {
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+.icon {
+    color: var(--primary-color);
+    margin-right: 0.8rem;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.buy-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.buy-btn:hover {
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+    transform: translateY(-2px);
+}
+
+.shared .buy-btn {
+    background: transparent;
+    border: 2px solid var(--text-main);
+    color: var(--text-main);
+    box-shadow: none;
+}
+
+.shared .buy-btn:hover {
+    background: var(--text-main);
+    color: var(--bg-dark);
+}
+
+footer {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    margin-top: 3rem;
+}
+
+footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--secondary-color);
+}
+
+/* Responsive */
+
+/* New Additions for Logos and Sections */
+.section-title-container {
+    text-align: center;
+    margin: 3rem 0 1rem;
+}
+.section-title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    gap: 0.8rem;
+    padding: 0.5rem 1.5rem;
+    background: rgba(20, 20, 25, 0.5);
+    border-radius: 50px;
+    border: 1px solid var(--border-color);
+}
+.section-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+}
+.chatgpt-logo {
+    color: #10a37f;
+}
+
+.title-with-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+.title-with-logo h3 {
+    margin-bottom: 0 !important;
+}
+.service-logo {
+    width: 25px;
+    height: 25px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.chatgpt-badge {
+    background: rgba(16, 163, 127, 0.1) !important;
+    color: #10a37f !important;
+    border: 1px solid rgba(16, 163, 127, 0.2) !important;
+}
+.chatgpt-icon {
+    color: #10a37f !important;
+}
+.chatgpt-btn {
+    background: linear-gradient(135deg, #10a37f, #0d8466) !important;
+    box-shadow: 0 4px 15px rgba(16, 163, 127, 0.3) !important;
+}
+.chatgpt-btn:hover {
+    box-shadow: 0 8px 25px rgba(16, 163, 127, 0.5) !important;
+}
+
+/* YouTube */
+.youtube-title { color: #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.1); }
+.youtube-logo { color: #ff0000; fill: #ff0000; }
+.youtube-badge { background: rgba(255, 0, 0, 0.1) !important; color: #ff0000 !important; border: 1px solid rgba(255, 0, 0, 0.2) !important; }
+.youtube-icon { color: #ff0000 !important; }
+.youtube-btn { background: linear-gradient(135deg, #ff0000, #cc0000) !important; box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3) !important; }
+.youtube-btn:hover { box-shadow: 0 8px 25px rgba(255, 0, 0, 0.5) !important; }
+
+/* Spotify */
+.spotify-title { color: #1DB954; box-shadow: 0 0 20px rgba(29, 185, 84, 0.1); }
+.spotify-logo { color: #1DB954; fill: #1DB954; }
+.spotify-badge { background: rgba(29, 185, 84, 0.1) !important; color: #1DB954 !important; border: 1px solid rgba(29, 185, 84, 0.2) !important; }
+.spotify-icon { color: #1DB954 !important; }
+.spotify-btn { background: linear-gradient(135deg, #1DB954, #1aa34a) !important; box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3) !important; }
+.spotify-btn:hover { box-shadow: 0 8px 25px rgba(29, 185, 84, 0.5) !important; }
+
+/* Adobe Creative Cloud */
+.adobe-title { color: #FF0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.1); }
+.adobe-logo { color: #FF0000; fill: #FF0000; }
+.adobe-badge { background: rgba(255, 0, 0, 0.1) !important; color: #FF0000 !important; border: 1px solid rgba(255, 0, 0, 0.2) !important; }
+.adobe-icon { color: #FF0000 !important; }
+.adobe-btn { background: linear-gradient(135deg, #FF0000, #b30000) !important; box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3) !important; }
+.adobe-btn:hover { box-shadow: 0 8px 25px rgba(255, 0, 0, 0.5) !important; }
+
+/* ExpressVPN */
+.expressvpn-title { color: #db2728; box-shadow: 0 0 20px rgba(219, 39, 40, 0.1); }
+.expressvpn-logo { color: #db2728; fill: #db2728; }
+.expressvpn-badge { background: rgba(219, 39, 40, 0.1) !important; color: #db2728 !important; border: 1px solid rgba(219, 39, 40, 0.2) !important; }
+.expressvpn-icon { color: #db2728 !important; }
+.expressvpn-btn { background: linear-gradient(135deg, #db2728, #b01e1f) !important; box-shadow: 0 4px 15px rgba(219, 39, 40, 0.3) !important; }
+.expressvpn-btn:hover { box-shadow: 0 8px 25px rgba(219, 39, 40, 0.5) !important; }
+
+/* Canva Pro */
+.canva-title { color: #00C4CC; box-shadow: 0 0 20px rgba(0, 196, 204, 0.1); }
+.canva-logo { color: #00C4CC; fill: #00C4CC; }
+.canva-badge { background: rgba(125, 42, 232, 0.1) !important; color: #7D2AE8 !important; border: 1px solid rgba(125, 42, 232, 0.2) !important; }
+.canva-icon { color: #00C4CC !important; }
+.canva-btn { background: linear-gradient(135deg, #00C4CC, #7D2AE8) !important; box-shadow: 0 4px 15px rgba(125, 42, 232, 0.3) !important; }
+.canva-btn:hover { box-shadow: 0 8px 25px rgba(125, 42, 232, 0.5) !important; }
+
+/* Facebook */
+.facebook-title { color: #1877F2; box-shadow: 0 0 20px rgba(24, 119, 242, 0.1); }
+.facebook-logo { color: #1877F2; fill: #1877F2; }
+.facebook-badge { background: rgba(24, 119, 242, 0.1) !important; color: #1877F2 !important; border: 1px solid rgba(24, 119, 242, 0.2) !important; }
+.facebook-icon { color: #1877F2 !important; }
+.facebook-btn { background: linear-gradient(135deg, #1877F2, #0d5ea6) !important; box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3) !important; }
+.facebook-btn:hover { box-shadow: 0 8px 25px rgba(24, 119, 242, 0.5) !important; }
+
+@media (max-width: 768px) {
+    .pricing-card.popular {
+        transform: scale(1);
+    }
+    .pricing-card.popular:hover {
+        transform: translateY(-10px);
+    }
+}
