@@ -412,6 +412,22 @@ footer a:hover {
 .facebook-btn { background: linear-gradient(135deg, #1877F2, #0d5ea6) !important; box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3) !important; }
 .facebook-btn:hover { box-shadow: 0 8px 25px rgba(24, 119, 242, 0.5) !important; }
 
+/* Perplexity AI */
+.perplexity-title { color: #00E5FF; box-shadow: 0 0 20px rgba(0, 229, 255, 0.1); }
+.perplexity-logo { color: #00E5FF; fill: #00E5FF; }
+.perplexity-badge { background: rgba(0, 229, 255, 0.1) !important; color: #00E5FF !important; border: 1px solid rgba(0, 229, 255, 0.2) !important; }
+.perplexity-icon { color: #00E5FF !important; }
+.perplexity-btn { background: linear-gradient(135deg, #00E5FF, #00B3CC) !important; color: #0a0a0f !important; box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3) !important; font-weight: 700 !important; }
+.perplexity-btn:hover { box-shadow: 0 8px 25px rgba(0, 229, 255, 0.5) !important; }
+
+/* Grok */
+.grok-title { color: #ffffff; box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); }
+.grok-logo { color: #ffffff; fill: #ffffff; }
+.grok-badge { background: rgba(255, 255, 255, 0.1) !important; color: #ffffff !important; border: 1px solid rgba(255, 255, 255, 0.2) !important; }
+.grok-icon { color: #ffffff !important; }
+.grok-btn { background: linear-gradient(135deg, #ffffff, #e2e8f0) !important; color: #0a0a0f !important; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3) !important; font-weight: 700 !important; }
+.grok-btn:hover { box-shadow: 0 8px 25px rgba(255, 255, 255, 0.5) !important; }
+
 @media (max-width: 768px) {
     .pricing-card.popular {
         transform: scale(1);
