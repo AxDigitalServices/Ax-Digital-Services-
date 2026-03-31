@@ -81,9 +81,57 @@ body {
 
 /* Header & Hero */
 header {
+    position: relative;
     text-align: center;
     padding: 3rem 1rem 1rem;
     animation: fadeInDown 1s ease-out;
+}
+
+/* Language Switcher */
+.lang-switcher {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.4rem;
+    border-radius: 50px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.lang-btn:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.lang-btn.active {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4);
+}
+
+@media (max-width: 600px) {
+    .lang-switcher {
+        top: 0.5rem;
+        right: 0.5rem;
+        transform: scale(0.85);
+    }
 }
 
 .logo h1 {
@@ -873,6 +921,230 @@ footer a:hover { color: var(--secondary-color); text-shadow: 0 0 10px rgba(168, 
     transform: translateX(-5px);
 }
 
+/* Hot Deals Slider */
+.hot-deals-wrapper {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
+}
+
+.hot-deals-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 2rem;
+    padding-bottom: 1.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    cursor: grab;
+}
+
+.hot-deals-slider:active {
+    cursor: grabbing;
+}
+
+.hot-deals-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.deal-card {
+    min-width: 280px;
+    max-width: 300px;
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    flex: 0 0 auto;
+    text-decoration: none;
+    color: inherit;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.deal-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 25px rgba(255,77,79,0.15);
+    border-color: rgba(255, 77, 79, 0.3);
+}
+
+.deal-img-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #1a1a24;
+}
+
+.deal-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.deal-card:hover .deal-img-wrapper img {
+    transform: scale(1.08);
+}
+
+.discount-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #10b981;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 6px;
+    z-index: 2;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.deal-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.deal-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.deal-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.deal-pricing del {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.new-price {
+    color: #ff4d4f;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.deal-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: auto;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 1rem;
+}
+
+.deal-tag {
+    background: #1877F2;
+    color: white;
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.deal-qty {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.slider-scrollbar-wrap {
+    padding: 0;
+    margin-top: 10px;
+}
+
+.slider-scrollbar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.scrollbar-thumb {
+    height: 100%;
+    width: 25%;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.scrollbar-thumb:hover, .scrollbar-thumb:active {
+    background: var(--text-main);
+}
+
+/* Scroll To Top Button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 105px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.scroll-to-top svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-color: transparent;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+    transform: translateY(-5px);
+}
+
+.scroll-to-top:hover svg {
+    transform: translateY(-3px);
+}
+
 @media (max-width: 768px) {
     .pricing-card.popular {
         transform: translateY(0) scale(1);
@@ -887,5 +1159,305 @@ footer a:hover { color: var(--secondary-color); text-shadow: 0 0 10px rgba(168, 
     .amount { font-size: 3.5rem; }
     .grid-overlay {
        background-size: 30px 30px;
+    }
+}
+
+/* Payment Modal */
+.payment-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 5, 8, 0.85);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-modal .modal-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    padding: 30px;
+    position: relative;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 20px 50px rgba(0,0,0,0.6);
+    animation: modalFadeIn 0.3s ease-out;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 32px;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: white;
+}
+
+.modal-header h2 {
+    margin: 0 0 10px;
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.modal-header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.payment-method-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-method-box:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.payment-method-box.active {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+.method-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.method-title h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.method-details {
+    padding-top: 20px;
+    margin-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: #e2e8f0;
+    font-size: 0.95rem;
+}
+
+.binance-id-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0,0,0,0.5);
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    border: 1px dashed rgba(255,255,255,0.2);
+    color: #FCD535;
+    margin-bottom: 8px;
+}
+
+.binance-id-box .copy-btn {
+    background: #FCD535;
+    color: #1E2329;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    transition: transform 0.2s;
+}
+
+.binance-id-box .copy-btn:hover {
+    transform: scale(1.05);
+}
+
+.tx-input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: monospace;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.tx-input:focus {
+    border-color: #FCD535;
+    box-shadow: 0 0 5px rgba(252, 213, 53, 0.3);
+}
+
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.custom-toast {
+    display: flex;
+    align-items: center;
+    background: rgba(15, 15, 20, 0.95);
+    backdrop-filter: blur(10px);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 15px 20px;
+    min-width: 300px;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05);
+    transform: translateX(120%);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: all;
+}
+
+.custom-toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.custom-toast.toast-error {
+    border-left-color: #ff4d4f;
+}
+
+.custom-toast.toast-error .toast-icon {
+    color: #ff4d4f;
+}
+
+.custom-toast.toast-success {
+    border-left-color: #10b981;
+}
+
+.custom-toast.toast-success .toast-icon {
+    color: #10b981;
+}
+
+.toast-icon {
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toast-message {
+    flex-grow: 1;
+    font-size: 0.95rem;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.toast-close {
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toast-close:hover {
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    /* Horizontal Swipe Cards for Mobile */
+    .pricing-container, .testimonials-container, .how-to-buy-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 1rem 1.5rem 2.5rem 1.5rem;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        -webkit-overflow-scrolling: touch;
+        gap: 1.2rem;
+    }
+    
+    .pricing-container::-webkit-scrollbar, .testimonials-container::-webkit-scrollbar, .how-to-buy-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Set width to 82vw so the next card heavily peeks out from the right, naturally hinting at scroll */
+    .pricing-card, .testimonial-card, .step-card {
+        flex: 0 0 82vw;
+        max-width: 82vw;
+        scroll-snap-align: center;
+        margin: 0;
+    }
+
+    /* Disable hover transforms on mobile scroll to prevent jitter */
+    .pricing-card:hover, .pricing-card.popular, .pricing-card.popular.show, .pricing-card.popular:hover, .testimonial-card:hover, .testimonial-card.show, .step-card:hover, .step-card.show {
+        transform: none !important;
+    }
+
+    /* Add "Swipe for more" hint below the section title purely with CSS */
+    .section-title-container::after {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        margin-top: 10px;
+        opacity: 0.8;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        animation: swipeHintAnim 2s infinite ease-in-out;
+    }
+    .section-title-container:has(+ .pricing-container)::after {
+        content: 'Swipe for more packages ⇿';
+    }
+    .section-title-container:has(+ .testimonials-container)::after {
+        content: 'Swipe for more reviews ⇿';
+    }
+    .section-title-container:has(+ .how-to-buy-container)::after {
+        content: 'Swipe for more steps ⇿';
+    }
+    .section-title-container:has(+ .faq-container)::after {
+        content: 'Tap questions to view answers 👇';
+        animation: none;
+    }
+
+    @keyframes swipeHintAnim {
+        0%, 100% { transform: translateX(0); opacity: 0.6; }
+        50% { transform: translateX(10px); opacity: 1; }
     }
 }
